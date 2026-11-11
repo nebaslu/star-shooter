@@ -26,17 +26,27 @@ Genera `dist/` (estático). Sube el contenido de `dist/` a tu hosting (por ejemp
 
 El `Dockerfile` es multi-stage: compila el juego con `node:22-alpine` (typecheck + build dentro del contenedor) y sirve el `dist/` con `nginx:alpine` en el puerto 8080. No hace falta `docker-compose`: un contenedor suelto vale.
 
+**De golpe (recomendado):**
+
+```bash
+./scripts/run-container.sh          # compila la imagen y levanta el juego
+# luego abre http://localhost:8080
+./scripts/run-container.sh down     # para y borra el contenedor
+```
+
+El script detecta solo si tienes `podman` o `docker`. Para cambiar el puerto: `PORT=9000 ./scripts/run-container.sh`.
+
+**A mano:**
+
 ```bash
 podman build -t star-shooter .
 podman run -d --name star-shooter -p 8080:80 star-shooter
 # con Docker: docker build -t star-shooter . && docker run -d --name star-shooter -p 8080:80 star-shooter
 ```
 
-Luego abre http://localhost:8080
-
 Para parar y borrar el contenedor: `podman stop star-shooter && podman rm star-shooter` (o `docker stop/rm`).
 
-Para desplegar en tu servidor web: ejecuta los mismos comandos en el servidor (o sube la imagen con `podman push`), o simplemente copia el `dist/` generado en local con `npm run build`.
+Para desplegar en tu servidor web: ejecuta el mismo script en el servidor (o sube la imagen con `podman push`), o simplemente copia el `dist/` generado en local con `npm run build`.
 
 ## Verificación
 
