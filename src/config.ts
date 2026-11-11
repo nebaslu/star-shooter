@@ -1,0 +1,10 @@
+export const GAME_WIDTH = 800;
+export const GAME_HEIGHT = 600;
+export const PLAYER_SPEED = 320;
+export const BULLET_SPEED = 650;
+export const FIRE_COOLDOWN_MS = 180;
+export const START_LIVES = 3;
+export const HIGH_SCORE_KEY = 'star-shooter-highscore';
+export const ENEMY_BASE_SPEED = 70;
+export const ENEMY_SPEED_PER_WAVE = 22;
+export const ENEMY_SWEEP_AMPLITUDE = 50;
